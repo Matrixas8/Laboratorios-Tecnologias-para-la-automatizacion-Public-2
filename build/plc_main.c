@@ -98,6 +98,12 @@ void PLC_SetTimer(unsigned long long next, unsigned long long period);
 
 
 
+IEC_INT var0;
+IEC_INT *__IW1 = &var0;
+IEC_INT var1;
+IEC_INT *__QW0 = &var1;
+IEC_INT var2;
+IEC_INT *__QW1 = &var2;
 /**
  * Win32 specific code
  **/

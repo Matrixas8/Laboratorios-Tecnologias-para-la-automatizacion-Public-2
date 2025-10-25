@@ -42,31 +42,33 @@ __end:
 
 
 void MAIN_init__(MAIN *data__, BOOL retain) {
-  __INIT_VAR(data__->INCLINACION,__BOOL_LITERAL(FALSE),retain)
-  __INIT_VAR(data__->LEDVERDE,__BOOL_LITERAL(TRUE),retain)
-  __INIT_VAR(data__->LEDROJO,__BOOL_LITERAL(FALSE),retain)
-  __INIT_VAR(data__->RELE,__BOOL_LITERAL(FALSE),retain)
-  PWM_CONTROLLER_init__(&data__->PWM_CONTROLLER0,retain);
-  __INIT_VAR(data__->SERVOENEBLE,__BOOL_LITERAL(FALSE),retain)
-  __INIT_VAR(data__->SERVOCHANNEL,3,retain)
-  __INIT_VAR(data__->SERVOFREQ,50.0,retain)
-  __INIT_VAR(data__->SERVODUTY,5.0,retain)
-  __INIT_VAR(data__->_TMP_NOT14_OUT,__BOOL_LITERAL(FALSE),retain)
+  __INIT_LOCATED(INT,__IW1,data__->EJEX,retain)
+  __INIT_LOCATED_VALUE(data__->EJEX,0)
+  __INIT_LOCATED(INT,__QW0,data__->SALIDAPWM,retain)
+  __INIT_LOCATED_VALUE(data__->SALIDAPWM,0)
+  __INIT_LOCATED(INT,__QW1,data__->IN2,retain)
+  __INIT_LOCATED_VALUE(data__->IN2,16)
+  __INIT_VAR(data__->ESCALADO,0,retain)
+  __INIT_VAR(data__->_TMP_MUL1_OUT,0,retain)
+  __INIT_VAR(data__->_TMP_MOVE5_OUT,0,retain)
 }
 
 // Code part
 void MAIN_body__(MAIN *data__) {
   // Initialise TEMP variables
 
-  __SET_VAR(data__->,LEDROJO,,__GET_VAR(data__->INCLINACION,));
-  __SET_VAR(data__->,_TMP_NOT14_OUT,,!(__GET_VAR(data__->INCLINACION,)));
-  __SET_VAR(data__->,LEDVERDE,,__GET_VAR(data__->_TMP_NOT14_OUT,));
-  __SET_VAR(data__->,RELE,,__GET_VAR(data__->INCLINACION,));
-  __SET_VAR(data__->PWM_CONTROLLER0.,EN,,__GET_VAR(data__->INCLINACION,));
-  __SET_VAR(data__->PWM_CONTROLLER0.,CHANNEL,,__GET_VAR(data__->SERVOCHANNEL,));
-  __SET_VAR(data__->PWM_CONTROLLER0.,FREQ,,__GET_VAR(data__->SERVOFREQ,));
-  __SET_VAR(data__->PWM_CONTROLLER0.,DUTY,,__GET_VAR(data__->SERVODUTY,));
-  PWM_CONTROLLER_body__(&data__->PWM_CONTROLLER0);
+  __SET_VAR(data__->,_TMP_MUL1_OUT,,MUL__INT__INT(
+    (BOOL)__BOOL_LITERAL(TRUE),
+    NULL,
+    (UINT)2,
+    (INT)__GET_LOCATED(data__->EJEX,),
+    (INT)__GET_LOCATED(data__->IN2,)));
+  __SET_VAR(data__->,ESCALADO,,__GET_VAR(data__->_TMP_MUL1_OUT,));
+  __SET_VAR(data__->,_TMP_MOVE5_OUT,,MOVE__INT__INT(
+    (BOOL)__BOOL_LITERAL(TRUE),
+    NULL,
+    (INT)__GET_VAR(data__->ESCALADO,)));
+  __SET_LOCATED(data__->,SALIDAPWM,,__GET_VAR(data__->_TMP_MOVE5_OUT,));
 
   goto __end;
 

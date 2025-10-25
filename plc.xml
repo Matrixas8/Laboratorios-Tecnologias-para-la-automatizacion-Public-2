@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <project xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201">
   <fileHeader companyName="Desconocido" productName="Sin nombre" productVersion="1" creationDateTime="2025-10-23T16:17:31"/>
-  <contentHeader name="Sin nombre" modificationDateTime="2025-10-23T21:36:19">
+  <contentHeader name="Sin nombre" modificationDateTime="2025-10-25T17:21:37">
     <coordinateInfo>
       <fbd>
         <scaling x="10" y="10"/>
@@ -20,137 +20,105 @@
       <pou name="main" pouType="program">
         <interface>
           <localVars>
-            <variable name="Inclinacion" address="%IX0.7">
+            <variable name="ejex" address="%IW1">
               <type>
-                <BOOL/>
+                <INT/>
               </type>
-              <initialValue>
-                <simpleValue value="FALSE"/>
-              </initialValue>
-              <documentation>
-                <xhtml:p><![CDATA[Sensor de inclinacion]]></xhtml:p>
-              </documentation>
             </variable>
-            <variable name="LedVerde" address="%QX0.6">
+            <variable name="SalidaPWM" address="%QW0">
               <type>
-                <BOOL/>
+                <INT/>
               </type>
-              <initialValue>
-                <simpleValue value="TRUE"/>
-              </initialValue>
-              <documentation>
-                <xhtml:p><![CDATA[Led verde]]></xhtml:p>
-              </documentation>
             </variable>
-            <variable name="LedRojo" address="%QX0.5">
+            <variable name="IN2" address="%QW1">
               <type>
-                <BOOL/>
+                <INT/>
               </type>
               <initialValue>
-                <simpleValue value="FALSE"/>
+                <simpleValue value="16"/>
               </initialValue>
-              <documentation>
-                <xhtml:p><![CDATA[Led rojo]]></xhtml:p>
-              </documentation>
-            </variable>
-            <variable name="Rele" address="%QX0.4">
-              <type>
-                <BOOL/>
-              </type>
-              <initialValue>
-                <simpleValue value="FALSE"/>
-              </initialValue>
-              <documentation>
-                <xhtml:p><![CDATA[Rele]]></xhtml:p>
-              </documentation>
             </variable>
           </localVars>
           <localVars>
-            <variable name="PWM_CONTROLLER0">
+            <variable name="Escalado">
               <type>
-                <derived name="PWM_CONTROLLER"/>
+                <INT/>
               </type>
-              <documentation>
-                <xhtml:p><![CDATA[Instancia del bloque PWM que genera la señal para el servo.]]></xhtml:p>
-              </documentation>
-            </variable>
-            <variable name="ServoEneble">
-              <type>
-                <BOOL/>
-              </type>
-              <initialValue>
-                <simpleValue value="FALSE"/>
-              </initialValue>
-              <documentation>
-                <xhtml:p><![CDATA[Habilita el PWM para el servo (IN del PWM_CONTROLLER)]]></xhtml:p>
-              </documentation>
-            </variable>
-            <variable name="ServoChannel">
-              <type>
-                <SINT/>
-              </type>
-              <initialValue>
-                <simpleValue value="3"/>
-              </initialValue>
-              <documentation>
-                <xhtml:p><![CDATA[Número de canal PWM que corresponde a GPIO11]]></xhtml:p>
-              </documentation>
-            </variable>
-            <variable name="ServoFreq">
-              <type>
-                <REAL/>
-              </type>
-              <initialValue>
-                <simpleValue value="50.0"/>
-              </initialValue>
-              <documentation>
-                <xhtml:p><![CDATA[Número de canal PWM que corresponde a GPIO11]]></xhtml:p>
-              </documentation>
-            </variable>
-            <variable name="ServoDuty">
-              <type>
-                <REAL/>
-              </type>
-              <initialValue>
-                <simpleValue value="5.0"/>
-              </initialValue>
-              <documentation>
-                <xhtml:p><![CDATA[Valor del ciclo de trabajo (%) para el servo (ej. 5.0 → ~0°)]]></xhtml:p>
-              </documentation>
             </variable>
           </localVars>
         </interface>
         <body>
           <LD>
-            <inVariable localId="12" width="100" height="30" negated="false">
-              <position x="340" y="200"/>
+            <block localId="1" typeName="MUL" width="70" height="60">
+              <position x="450" y="90"/>
+              <inputVariables>
+                <variable formalParameter="IN1">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="2">
+                      <position x="450" y="120"/>
+                      <position x="365" y="120"/>
+                      <position x="365" y="110"/>
+                      <position x="280" y="110"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="IN2">
+                  <connectionPointIn>
+                    <relPosition x="0" y="50"/>
+                    <connection refLocalId="3">
+                      <position x="450" y="140"/>
+                      <position x="270" y="140"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="OUT">
+                  <connectionPointOut>
+                    <relPosition x="70" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="2" width="50" height="30" negated="false">
+              <position x="230" y="90"/>
               <connectionPointOut>
-                <relPosition x="100" y="20"/>
+                <relPosition x="50" y="20"/>
               </connectionPointOut>
-              <expression>Inclinacion</expression>
+              <expression>ejex</expression>
             </inVariable>
-            <outVariable localId="13" width="70" height="30" negated="false">
-              <position x="840" y="120"/>
+            <inVariable localId="3" width="40" height="30" negated="false">
+              <position x="230" y="120"/>
+              <connectionPointOut>
+                <relPosition x="40" y="20"/>
+              </connectionPointOut>
+              <expression>IN2</expression>
+            </inVariable>
+            <inOutVariable localId="4" width="80" height="30" negatedOut="false" negatedIn="false">
+              <position x="620" y="110"/>
               <connectionPointIn>
-                <relPosition x="0" y="20"/>
-                <connection refLocalId="12">
-                  <position x="840" y="140"/>
-                  <position x="590" y="140"/>
-                  <position x="590" y="220"/>
-                  <position x="440" y="220"/>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="1" formalParameter="OUT">
+                  <position x="620" y="120"/>
+                  <position x="520" y="120"/>
                 </connection>
               </connectionPointIn>
-              <expression>LedRojo</expression>
-            </outVariable>
-            <block localId="14" typeName="NOT" width="60" height="40">
-              <position x="680" y="190"/>
+              <connectionPointOut>
+                <relPosition x="80" y="10"/>
+              </connectionPointOut>
+              <expression>Escalado</expression>
+            </inOutVariable>
+            <block localId="5" typeName="MOVE" width="60" height="40">
+              <position x="800" y="90"/>
               <inputVariables>
                 <variable formalParameter="IN">
                   <connectionPointIn>
                     <relPosition x="0" y="30"/>
-                    <connection refLocalId="12">
-                      <position x="680" y="220"/>
-                      <position x="440" y="220"/>
+                    <connection refLocalId="4">
+                      <position x="800" y="120"/>
+                      <position x="700" y="120"/>
                     </connection>
                   </connectionPointIn>
                 </variable>
@@ -164,111 +132,17 @@
                 </variable>
               </outputVariables>
             </block>
-            <outVariable localId="1" width="80" height="30" negated="false" executionOrderId="0">
-              <position x="840" y="200"/>
+            <outVariable localId="6" width="90" height="30" negated="false">
+              <position x="930" y="100"/>
               <connectionPointIn>
                 <relPosition x="0" y="20"/>
-                <connection refLocalId="14" formalParameter="OUT">
-                  <position x="840" y="220"/>
-                  <position x="740" y="220"/>
+                <connection refLocalId="5" formalParameter="OUT">
+                  <position x="930" y="120"/>
+                  <position x="860" y="120"/>
                 </connection>
               </connectionPointIn>
-              <expression>LedVerde</expression>
+              <expression>SalidaPWM</expression>
             </outVariable>
-            <outVariable localId="2" width="70" height="30" negated="false" executionOrderId="0">
-              <position x="840" y="270"/>
-              <connectionPointIn>
-                <relPosition x="0" y="10"/>
-                <connection refLocalId="12">
-                  <position x="840" y="280"/>
-                  <position x="590" y="280"/>
-                  <position x="590" y="220"/>
-                  <position x="440" y="220"/>
-                </connection>
-              </connectionPointIn>
-              <expression>Rele</expression>
-            </outVariable>
-            <block localId="15" typeName="PWM_CONTROLLER" instanceName="PWM_CONTROLLER0" width="130" height="100">
-              <position x="820" y="330"/>
-              <inputVariables>
-                <variable formalParameter="EN">
-                  <connectionPointIn>
-                    <relPosition x="0" y="30"/>
-                    <connection refLocalId="12">
-                      <position x="820" y="360"/>
-                      <position x="590" y="360"/>
-                      <position x="590" y="220"/>
-                      <position x="440" y="220"/>
-                    </connection>
-                  </connectionPointIn>
-                </variable>
-                <variable formalParameter="CHANNEL">
-                  <connectionPointIn>
-                    <relPosition x="0" y="50"/>
-                    <connection refLocalId="19">
-                      <position x="820" y="380"/>
-                      <position x="570" y="380"/>
-                    </connection>
-                  </connectionPointIn>
-                </variable>
-                <variable formalParameter="FREQ">
-                  <connectionPointIn>
-                    <relPosition x="0" y="70"/>
-                    <connection refLocalId="18">
-                      <position x="820" y="400"/>
-                      <position x="680" y="400"/>
-                      <position x="680" y="420"/>
-                      <position x="570" y="420"/>
-                    </connection>
-                  </connectionPointIn>
-                </variable>
-                <variable formalParameter="DUTY">
-                  <connectionPointIn>
-                    <relPosition x="0" y="90"/>
-                    <connection refLocalId="16">
-                      <position x="820" y="420"/>
-                      <position x="695" y="420"/>
-                      <position x="695" y="440"/>
-                      <position x="570" y="440"/>
-                    </connection>
-                  </connectionPointIn>
-                </variable>
-              </inputVariables>
-              <inOutVariables/>
-              <outputVariables>
-                <variable formalParameter="ENO">
-                  <connectionPointOut>
-                    <relPosition x="130" y="30"/>
-                  </connectionPointOut>
-                </variable>
-                <variable formalParameter="SUCCESS">
-                  <connectionPointOut>
-                    <relPosition x="130" y="50"/>
-                  </connectionPointOut>
-                </variable>
-              </outputVariables>
-            </block>
-            <inVariable localId="16" width="90" height="30" negated="false">
-              <position x="480" y="430"/>
-              <connectionPointOut>
-                <relPosition x="90" y="20"/>
-              </connectionPointOut>
-              <expression>ServoDuty</expression>
-            </inVariable>
-            <inVariable localId="18" width="90" height="30" negated="false">
-              <position x="480" y="400"/>
-              <connectionPointOut>
-                <relPosition x="90" y="20"/>
-              </connectionPointOut>
-              <expression>ServoFreq</expression>
-            </inVariable>
-            <inVariable localId="19" width="110" height="30" negated="false">
-              <position x="460" y="370"/>
-              <connectionPointOut>
-                <relPosition x="110" y="10"/>
-              </connectionPointOut>
-              <expression>ServoChannel</expression>
-            </inVariable>
           </LD>
         </body>
       </pou>

@@ -23,25 +23,20 @@ END_FUNCTION_BLOCK
 
 PROGRAM main
   VAR
-    Inclinacion : BOOL := FALSE;
-    LedVerde : BOOL := TRUE;
-    LedRojo : BOOL := FALSE;
-    Rele : BOOL := FALSE;
+    ejex AT %IW1 : INT;
+    SalidaPWM AT %QW0 : INT;
+    IN2 AT %QW1 : INT := 16;
   END_VAR
   VAR
-    PWM_CONTROLLER0 : PWM_CONTROLLER;
-    ServoEneble : BOOL := FALSE;
-    ServoChannel : SINT := 3;
-    ServoFreq : REAL := 50.0;
-    ServoDuty : REAL := 5.0;
-    _TMP_NOT14_OUT : BOOL;
+    Escalado : INT;
+    _TMP_MUL1_OUT : INT;
+    _TMP_MOVE5_OUT : INT;
   END_VAR
 
-  LedRojo := Inclinacion;
-  _TMP_NOT14_OUT := NOT(Inclinacion);
-  LedVerde := _TMP_NOT14_OUT;
-  Rele := Inclinacion;
-  PWM_CONTROLLER0(EN := Inclinacion, CHANNEL := ServoChannel, FREQ := ServoFreq, DUTY := ServoDuty);
+  _TMP_MUL1_OUT := MUL(ejex, IN2);
+  Escalado := _TMP_MUL1_OUT;
+  _TMP_MOVE5_OUT := MOVE(Escalado);
+  SalidaPWM := _TMP_MOVE5_OUT;
 END_PROGRAM
 
 
