@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <project xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201">
   <fileHeader companyName="Desconocido" productName="Sin nombre" productVersion="1" creationDateTime="2025-10-23T16:17:31"/>
-  <contentHeader name="Sin nombre" modificationDateTime="2025-10-27T10:25:55">
+  <contentHeader name="Sin nombre" modificationDateTime="2025-10-27T11:23:35">
     <coordinateInfo>
       <fbd>
         <scaling x="10" y="10"/>
@@ -515,7 +515,7 @@
               <expression>E2</expression>
             </inVariable>
             <inVariable localId="22" width="100" height="30" negated="false">
-              <position x="1400" y="350"/>
+              <position x="1390" y="360"/>
               <connectionPointOut>
                 <relPosition x="100" y="10"/>
               </connectionPointOut>
@@ -541,8 +541,8 @@
                     <connection refLocalId="22">
                       <position x="1568" y="350"/>
                       <position x="1534" y="350"/>
-                      <position x="1534" y="360"/>
-                      <position x="1500" y="360"/>
+                      <position x="1534" y="370"/>
+                      <position x="1490" y="370"/>
                     </connection>
                   </connectionPointIn>
                 </variable>
@@ -741,37 +741,15 @@
               <position x="1820" y="600"/>
               <connectionPointIn>
                 <relPosition x="0" y="20"/>
-                <connection refLocalId="37" formalParameter="OUT">
+                <connection refLocalId="31">
                   <position x="1820" y="620"/>
-                  <position x="1720" y="620"/>
+                  <position x="1575" y="620"/>
+                  <position x="1575" y="640"/>
+                  <position x="1330" y="640"/>
                 </connection>
               </connectionPointIn>
               <expression>Rele</expression>
             </outVariable>
-            <block localId="37" typeName="NOT" width="60" height="40">
-              <position x="1660" y="590"/>
-              <inputVariables>
-                <variable formalParameter="IN">
-                  <connectionPointIn>
-                    <relPosition x="0" y="30"/>
-                    <connection refLocalId="31">
-                      <position x="1660" y="620"/>
-                      <position x="1514" y="620"/>
-                      <position x="1514" y="640"/>
-                      <position x="1330" y="640"/>
-                    </connection>
-                  </connectionPointIn>
-                </variable>
-              </inputVariables>
-              <inOutVariables/>
-              <outputVariables>
-                <variable formalParameter="OUT">
-                  <connectionPointOut>
-                    <relPosition x="60" y="30"/>
-                  </connectionPointOut>
-                </variable>
-              </outputVariables>
-            </block>
             <block localId="38" typeName="NOT" width="60" height="40" executionOrderId="0">
               <position x="1640" y="660"/>
               <inputVariables>
@@ -856,40 +834,18 @@
               </outputVariables>
             </block>
             <outVariable localId="27" width="50" height="30" negated="false" executionOrderId="0">
-              <position x="1860" y="400"/>
+              <position x="1780" y="370"/>
               <connectionPointIn>
-                <relPosition x="0" y="10"/>
-                <connection refLocalId="41" formalParameter="OUT">
-                  <position x="1860" y="410"/>
-                  <position x="1750" y="410"/>
+                <relPosition x="0" y="20"/>
+                <connection refLocalId="22">
+                  <position x="1780" y="390"/>
+                  <position x="1680" y="390"/>
+                  <position x="1680" y="370"/>
+                  <position x="1490" y="370"/>
                 </connection>
               </connectionPointIn>
               <expression>Rele</expression>
             </outVariable>
-            <block localId="41" typeName="NOT" width="60" height="40" executionOrderId="0">
-              <position x="1690" y="380"/>
-              <inputVariables>
-                <variable formalParameter="IN">
-                  <connectionPointIn>
-                    <relPosition x="0" y="30"/>
-                    <connection refLocalId="22">
-                      <position x="1690" y="410"/>
-                      <position x="1540" y="410"/>
-                      <position x="1540" y="360"/>
-                      <position x="1500" y="360"/>
-                    </connection>
-                  </connectionPointIn>
-                </variable>
-              </inputVariables>
-              <inOutVariables/>
-              <outputVariables>
-                <variable formalParameter="OUT">
-                  <connectionPointOut>
-                    <relPosition x="60" y="30"/>
-                  </connectionPointOut>
-                </variable>
-              </outputVariables>
-            </block>
           </LD>
         </body>
       </pou>
