@@ -24,19 +24,65 @@ END_FUNCTION_BLOCK
 PROGRAM main
   VAR
     ejex AT %IW1 : INT;
-    SalidaPWM AT %QW0 : INT;
-    IN2 AT %QW1 : INT := 16;
+    LedV AT %QX0.0 : BOOL;
+    LedR AT %QX0.1 : BOOL;
+    Rele AT %QX0.2 : BOOL := TRUE;
+    Inclinacion AT %IX0.0 : BOOL;
   END_VAR
   VAR
-    Escalado : INT;
-    _TMP_MUL1_OUT : INT;
-    _TMP_MOVE5_OUT : INT;
+    V1 : INT := 306;
+    V2 : INT := 512;
+    V3 : INT := 716;
+    E1 : BOOL := FALSE;
+    E2 : BOOL := FALSE;
+    E3 : BOOL := FALSE;
+    E4 : BOOL := FALSE;
+    Timer : TIME := T#500ms;
+    TON0 : TON;
+    _TMP_AND23_OUT : BOOL;
+    _TMP_LT11_OUT : BOOL;
+    _TMP_GE8_OUT : BOOL;
+    _TMP_LT1_OUT : BOOL;
+    _TMP_AND17_OUT : BOOL;
+    _TMP_GE2_OUT : BOOL;
+    _TMP_LT3_OUT : BOOL;
+    _TMP_AND6_OUT : BOOL;
+    _TMP_GE18_OUT : BOOL;
+    _TMP_NOT40_OUT : BOOL;
+    _TMP_OR28_OUT : BOOL;
+    _TMP_AND39_OUT : BOOL;
+    _TMP_NOT38_OUT : BOOL;
+    _TMP_AND34_OUT : BOOL;
+    _TMP_NOT37_OUT : BOOL;
+    _TMP_NOT41_OUT : BOOL;
   END_VAR
 
-  _TMP_MUL1_OUT := MUL(ejex, IN2);
-  Escalado := _TMP_MUL1_OUT;
-  _TMP_MOVE5_OUT := MOVE(Escalado);
-  SalidaPWM := _TMP_MOVE5_OUT;
+  _TMP_AND23_OUT := AND(E2, Inclinacion);
+  LedV := _TMP_AND23_OUT;
+  _TMP_LT11_OUT := LT(ejex, V1);
+  E1 := _TMP_LT11_OUT;
+  _TMP_GE8_OUT := GE(ejex, V1);
+  _TMP_LT1_OUT := LT(ejex, V2);
+  _TMP_AND17_OUT := AND(_TMP_GE8_OUT, _TMP_LT1_OUT);
+  E2 := _TMP_AND17_OUT;
+  _TMP_GE2_OUT := GE(ejex, V2);
+  _TMP_LT3_OUT := LT(ejex, V3);
+  _TMP_AND6_OUT := AND(_TMP_GE2_OUT, _TMP_LT3_OUT);
+  E3 := _TMP_AND6_OUT;
+  _TMP_GE18_OUT := GE(ejex, V3);
+  E4 := _TMP_GE18_OUT;
+  _TMP_NOT40_OUT := NOT(Inclinacion);
+  _TMP_OR28_OUT := OR(E3, E4, _TMP_NOT40_OUT);
+  LedR := _TMP_OR28_OUT;
+  _TMP_AND39_OUT := AND(E4, _TMP_NOT38_OUT);
+  TON0(IN := _TMP_AND39_OUT, PT := Timer);
+  _TMP_NOT38_OUT := NOT(TON0.Q);
+  _TMP_AND34_OUT := AND(_TMP_NOT38_OUT, LedR);
+  LedR := _TMP_AND34_OUT;
+  _TMP_NOT37_OUT := NOT(E4);
+  Rele := _TMP_NOT37_OUT;
+  _TMP_NOT41_OUT := NOT(Inclinacion);
+  Rele := _TMP_NOT41_OUT;
 END_PROGRAM
 
 
