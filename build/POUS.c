@@ -75,8 +75,6 @@ void MAIN_init__(MAIN *data__, BOOL retain) {
   __INIT_VAR(data__->_TMP_AND39_OUT,__BOOL_LITERAL(FALSE),retain)
   __INIT_VAR(data__->_TMP_NOT38_OUT,__BOOL_LITERAL(FALSE),retain)
   __INIT_VAR(data__->_TMP_AND34_OUT,__BOOL_LITERAL(FALSE),retain)
-  __INIT_VAR(data__->_TMP_NOT37_OUT,__BOOL_LITERAL(FALSE),retain)
-  __INIT_VAR(data__->_TMP_NOT41_OUT,__BOOL_LITERAL(FALSE),retain)
 }
 
 // Code part
@@ -168,10 +166,8 @@ void MAIN_body__(MAIN *data__) {
     (BOOL)__GET_VAR(data__->_TMP_NOT38_OUT,),
     (BOOL)__GET_LOCATED(data__->LEDR,)));
   __SET_LOCATED(data__->,LEDR,,__GET_VAR(data__->_TMP_AND34_OUT,));
-  __SET_VAR(data__->,_TMP_NOT37_OUT,,!(__GET_VAR(data__->E4,)));
-  __SET_LOCATED(data__->,RELE,,__GET_VAR(data__->_TMP_NOT37_OUT,));
-  __SET_VAR(data__->,_TMP_NOT41_OUT,,!(__GET_LOCATED(data__->INCLINACION,)));
-  __SET_LOCATED(data__->,RELE,,__GET_VAR(data__->_TMP_NOT41_OUT,));
+  __SET_LOCATED(data__->,RELE,,__GET_VAR(data__->E4,));
+  __SET_LOCATED(data__->,RELE,,__GET_LOCATED(data__->INCLINACION,));
 
   goto __end;
 

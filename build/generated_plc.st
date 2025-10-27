@@ -30,8 +30,6 @@ PROGRAM main
     _TMP_AND39_OUT : BOOL;
     _TMP_NOT38_OUT : BOOL;
     _TMP_AND34_OUT : BOOL;
-    _TMP_NOT37_OUT : BOOL;
-    _TMP_NOT41_OUT : BOOL;
   END_VAR
 
   _TMP_AND23_OUT := AND(E2, Inclinacion);
@@ -56,10 +54,8 @@ PROGRAM main
   _TMP_NOT38_OUT := NOT(TON0.Q);
   _TMP_AND34_OUT := AND(_TMP_NOT38_OUT, LedR);
   LedR := _TMP_AND34_OUT;
-  _TMP_NOT37_OUT := NOT(E4);
-  Rele := _TMP_NOT37_OUT;
-  _TMP_NOT41_OUT := NOT(Inclinacion);
-  Rele := _TMP_NOT41_OUT;
+  Rele := E4;
+  Rele := Inclinacion;
 END_PROGRAM
 
 
